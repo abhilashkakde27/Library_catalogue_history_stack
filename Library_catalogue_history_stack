@@ -1,0 +1,82 @@
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Library
+{
+    string books[100];
+    int top;
+
+public:
+    Library()
+    {
+        top = -1;
+    }
+
+    void addBook()
+    {
+        if(top == 99)
+            cout<<"Stack is Full\n";
+        else
+        {
+            string name;
+            cout<<"Enter book name: ";
+            cin>>name;
+            top++;
+            books[top] = name;
+            cout<<"Book added successfully\n";
+        }
+    }
+
+    void removeBook()
+    {
+        if(top == -1)
+            cout<<"No book in history\n";
+        else
+        {
+            cout<<"Removed book: "<<books[top]<<endl;
+            top--;
+        }
+    }
+
+    void displayHistory()
+    {
+        if(top == -1)
+            cout<<"History is Empty\n";
+        else
+        {
+            cout<<"Library Catalogue History:\n";
+            for(int i=top; i>=0; i--)
+                cout<<books[i]<<endl;
+        }
+    }
+};
+
+int main()
+{
+    Library l;
+    int ch;
+
+    do
+    {
+        cout<<"\n1. Add Book";
+        cout<<"\n2. Remove Latest Book";
+        cout<<"\n3. Display History";
+        cout<<"\n4. Exit";
+        cout<<"\nEnter choice: ";
+        cin>>ch;
+
+        switch(ch)
+        {
+            case 1: l.addBook(); break;
+            case 2: l.removeBook(); break;
+            case 3: l.displayHistory(); break;
+            case 4: cout<<"Exiting...";
+                    break;
+            default: cout<<"Invalid Choice\n";
+        }
+    }while(ch != 4);
+
+    return 0;
+}
